@@ -1,4 +1,4 @@
-import { CombinedProperties, Messages, MessageTypes } from "messages.types";
+import { CombinedProperties, Message, Messages, MessageTypes, TextInsertArray, TextInsertObject, TextType } from "messages.types";
 
 const filteredMessages = (type: MessageTypes, 
                           property: CombinedProperties, 
@@ -13,9 +13,24 @@ export const propertyOnly = (property: CombinedProperties, messages: Messages) =
         messages.map(m => m[property]);
 
 export const textOnly = (messages: Messages) => 
-    propertyOnly("text", messages);
+    propertyOnly("text", messages) as Array<TextType>;
 
 export const textOnlyNonEmpty = (messages: Messages) => 
         textOnly(messages).filter(Boolean);
+
+export const textOnlyNonEmpyStringStrict = (messages: Messages) => 
+        textOnlyNonEmpty(messages).map(msg => {
+            if(typeof msg === 'string') return msg;
+            return transformTextSpecialCaseIntoString(msg);
+        })
+
+export const transformTextSpecialCaseIntoString = (text: TextInsertArray) => {
+    const mapped = text.map(el => {
+        if(typeof el === 'string' ) return el
+        return el.text
+    })
+
+    return ''.concat(...mapped)
+}
 
 export default filteredMessages;

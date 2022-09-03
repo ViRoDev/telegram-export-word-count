@@ -2,8 +2,10 @@ export type MessageTypes = "service" | "message"
 export type ActionTypes = "edit_group_photo" | "migrate_from_group" | "invite_members"
 
 export type TextSpecialInsertType = "phone" | 'link' | 'mention' | 'text_link' | 'bold' | 'email' |'bot_command' 
-export type TextSpecialInsert = [string?, { type: TextSpecialInsertType, text: string}?, string?];
-export type TextType = string | TextSpecialInsert;
+export type TextInsertObject = {type: TextSpecialInsertType, text: string}
+export type TextSpecialArrayType = string | TextInsertObject;
+export type TextInsertArray = [...Array<TextSpecialArrayType>]
+export type TextType = string | TextInsertArray;
 
 export type Messages = Array<Message>;
 export type MessageProperties = "id" | "type" | "date" | "date_unixtime" | "text";
@@ -12,7 +14,7 @@ export type Message = {
     type: MessageTypes,
     date: string,
     date_unixtime: number,
-    text: string | TextType,
+    text: TextType,
     actor?: string,
     actor_id?: number,
     action?: ActionTypes,
