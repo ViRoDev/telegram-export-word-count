@@ -14,13 +14,13 @@
 //  - [ ] Sort words by appearence
 //  - [ ] Get top results
 
+import filteredMessages from "filterMessages";
 import parseJSON from "./parseJSON";
 
-const FILEPATH = 'src/result.json';
+const FILEPATH = 'public/result.json';
 
 const main = async () => {
     const dataObject = await parseJSON(FILEPATH);
-    console.log(dataObject);
 }
 
 main();
