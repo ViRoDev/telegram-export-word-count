@@ -1,6 +1,7 @@
 export type MessageTypes = "service" | "message" 
 export type ActionTypes = "edit_group_photo" | "migrate_from_group" | "invite_members"
 
+export type Messages = Array<Message>;
 export type MessageProperties = "id" | "type" | "date" | "date_unixtime" | "text";
 export type Message = {
     id: number,
