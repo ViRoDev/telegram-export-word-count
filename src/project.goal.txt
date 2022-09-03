@@ -8,6 +8,7 @@ Project steps:
   - [x] With property (in my case - user_id) with special value
   - [x] 'text' field should not be empty
     - [x] handle special case -- text field is an array of [string, obj, string] 
+    - [ ] handle links -- remove them from messages
 [ ] Divide each text message into arrays of words
 [ ] Combine those arrays into one array of words
 [ ] Process words
