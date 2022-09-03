@@ -13,6 +13,7 @@
   "dependencies": {
     "bfj": "^7.0.2",
     "dotenv": "^16.0.2",
+    "emoji-regex": "^10.1.0",
     "esbuild": "^0.15.6"
   }
 }

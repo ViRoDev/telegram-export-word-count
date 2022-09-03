@@ -1,4 +1,5 @@
 import { CombinedProperties, Message, Messages, MessageTypes, TextInsertArray, TextInsertObject, TextType } from "messages.types";
+import emojiRegex from "emoji-regex";
 
 const filteredMessages = (type: MessageTypes, 
                           property: CombinedProperties, 
@@ -33,8 +34,13 @@ export const transformTextSpecialCaseIntoString = (text: TextInsertArray) => {
     return ''.concat(...mapped)
 }
 
-export const splitIntoWords = (messages: string[]) => 
-    messages.map(msg => msg.split(/[\s,.;:?\-\"\'\(\)\[\]]+/));
+export const splitIntoWords = (messages: string[]) => {
+    const emojiReg = emojiRegex();
+    const spacesPunctuationReg = /[\s,.;:?\-\"\'\(\)\[\]]+/;
+    return messages.map(msg => msg
+        .replace(emojiReg, '')
+        .split(spacesPunctuationReg));
+}
 
 export const concatInnerArrays = (messages: string[][]) => messages
         .reduce((prev, cur) =>
