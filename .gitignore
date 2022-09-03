@@ -1,3 +1,4 @@
 node_modules
 public/bundle.js
 public/result.json
+yarn-error.log
