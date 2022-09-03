@@ -7,7 +7,7 @@ export type Message = {
     type: MessageTypes,
     date: string,
     date_unixtime: number,
-    text: string,
+    text: string | [string?, {type: string, text: string}?, string?],
     actor?: string,
     actor_id?: number,
     action?: ActionTypes,
