@@ -39,6 +39,7 @@ export const splitIntoWords = (messages: string[]) => {
     const spacesPunctuationReg = /[\s,.;:?\-\"\'\(\)\[\]]+/;
     return messages.map(msg => msg
         .replace(emojiReg, '')
+        .toLowerCase()
         .split(spacesPunctuationReg));
 }
 
