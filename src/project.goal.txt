@@ -3,11 +3,11 @@ Init: We have result.json file from Telegram
 Project steps:
 [x]: From FILE to object
 [x]: From object to an array of messages 
-[ ]: From messages to Filtered Messages:
+[x]: From messages to Filtered Messages:
   - [x] with special type (user text message)
   - [x] With property (in my case - user_id) with special value
   - [x] 'text' field should not be empty
-    - [ ] handle special case -- text field is an array of [string, obj, string] 
+    - [x] handle special case -- text field is an array of [string, obj, string] 
 [ ] Divide each text message into arrays of words
 [ ] Combine those arrays into one array of words
 [ ] Process words
