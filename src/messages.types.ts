@@ -8,6 +8,12 @@ export type Message = {
     date: string,
     date_unixtime: number,
     text: string,
+    actor?: string,
+    actor_id?: number,
+    action?: ActionTypes,
+    from?: string,
+    from_id?: number,
+    reply_to_message_id?: number,
 }
 
 export type ServiceMessageProperties = MessageProperties | "actor" | "actor_id" | "action";
