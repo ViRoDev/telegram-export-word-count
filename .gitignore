@@ -1,4 +1,4 @@
 node_modules
-public/bundle.js
-public/result.json
+public/*
+!public/readme.txt
 yarn-error.log
