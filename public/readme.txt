@@ -1,0 +1,1 @@
+Copy/Move your exported telegram .json file (result.json by default) here; 
