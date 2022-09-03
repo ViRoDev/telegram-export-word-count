@@ -19,6 +19,6 @@ const getMessagesFromFile = async (filepath: string) =>
     (await parseJSON(filepath)).messages
 
 const filterFromUser = (messages : Array<Message>) => 
-    filteredMessages('message', 'from_id', process.env.FROM_ID ?? "user01", messages)
+    filteredMessages('message', 'from_id', process.env.FROM_ID!!, messages)
 
 main();
