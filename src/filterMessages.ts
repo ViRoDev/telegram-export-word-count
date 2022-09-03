@@ -33,4 +33,12 @@ export const transformTextSpecialCaseIntoString = (text: TextInsertArray) => {
     return ''.concat(...mapped)
 }
 
+export const splitIntoWords = (messages: string[]) => 
+    messages.map(msg => msg.split(/[\s,.;:?\-\"\'\(\)\[\]]+/));
+
+export const concatInnerArrays = (messages: string[][]) => messages
+        .reduce((prev, cur) =>
+            prev.concat([...cur]))
+        .filter(Boolean);
+
 export default filteredMessages;
