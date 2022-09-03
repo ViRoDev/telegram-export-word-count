@@ -1,6 +1,6 @@
 import fs from 'fs';
 import {config} from 'dotenv'
-import filteredMessages from "filterMessages";
+import filteredMessages, { textOnlyNonEmpty } from "filterMessages";
 import parseJSON from "./parseJSON";
 import { Message } from 'messages.types';
 
@@ -10,7 +10,7 @@ config({path: './public/.env'});
 const main = async () => {
     const messages = await getMessagesFromFile(FILEPATH)
     const filtered = filterFromUser(messages)
-    const textOnly = filtered.map(msg => msg.text)
+    const textOnly = textOnlyNonEmpty(filtered);
     //or open already existing file 
     fs.writeFileSync("public/filtered.json", JSON.stringify(textOnly));
 }
