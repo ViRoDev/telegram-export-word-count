@@ -1,8 +1,6 @@
 import fs from 'fs';
 import {config} from 'dotenv'
-import {filterFromUser, concatInnerArrays, splitIntoWords, getMessagesFromFile, textOnlyNonEmpyStringStrict } from "filterMessages";
-import parseJSON from "./parseJSON";
-import { Message } from 'messages.types';
+import {filterFromUser, concatInnerArrays, splitIntoWords, getMessagesFromFile, textOnlyNonEmpyStringStrict } from "Messages";
 import { cache } from 'functionMemoization';
 
 const CACHE_FOLDER_PATH = 'public/.cache'
