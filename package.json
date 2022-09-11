@@ -1,9 +1,12 @@
 {
   "scripts": {
-    "build": "esbuild src/index.ts --bundle --minify --platform=node --outfile=public/bundle.js",
-    "start": "node ./public/bundle.js",
+    "dev-build" : "esbuild src/index.ts --bundle --platform=node --outfile=dist/bundle.js",
+    "dev-start" : "node ./dist/bundle.js",
+    "dev" : "NODE_PATH=./src ts-node ./src/index.ts",
+    "release-build": "esbuild src/index.ts --bundle --minify --platform=node --outfile=public/bundle.js",
+    "release-start": "node ./public/bundle.js",
     "ts" : "ts-node ./src/index.ts",
-    "dev": "yarn build && yarn start"
+    "release-test": "yarn release-build && yarn start"
   },
   "devDependencies": {
     "@types/node": "^18.7.14",
