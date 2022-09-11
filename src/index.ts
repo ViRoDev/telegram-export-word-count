@@ -15,17 +15,17 @@ const main = async () => {
 
     console.log('filtering by user')
     let ffu = filterFromUser;
-    const filtered = await cache<typeof ffu>(filterFromUser, CACHE_FOLDER_PATH)(messages, process.env.FROM_ID!!)
+    const filtered = cache<typeof ffu>(filterFromUser, CACHE_FOLDER_PATH)(messages, process.env.FROM_ID!!)
     console.log('\t...done')
 
     console.log('text only')
     let toness = textOnlyNonEmpyStringStrict;
-    const textOnly = await cache<typeof toness>(toness, CACHE_FOLDER_PATH)(filtered);
+    const textOnly = cache<typeof toness>(toness, CACHE_FOLDER_PATH)(filtered);
     console.log('\t...done')
     
     console.log('split into words')
     let siw = splitIntoWords;
-    const messagesWordsArray = await cache<typeof siw>(splitIntoWords, CACHE_FOLDER_PATH)(textOnly);
+    const messagesWordsArray = cache<typeof siw>(splitIntoWords, CACHE_FOLDER_PATH)(textOnly);
     console.log('\t...done')
 
     console.log('concat inner arrays')
