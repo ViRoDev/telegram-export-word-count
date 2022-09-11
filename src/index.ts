@@ -1,6 +1,6 @@
 import fs from 'fs';
 import {config} from 'dotenv'
-import {filterFromUser, concatInnerArrays, splitIntoWords, getMessagesFromFile, textOnlyNonEmpyStringStrict } from "Messages";
+import {filterFromUser, concatInnerArrays, splitIntoWords, getMessagesFromFile, textOnlyNonEmpyStringStrict } from "messages";
 import { cache } from 'functionMemoization';
 
 const CACHE_FOLDER_PATH = 'public/.cache'

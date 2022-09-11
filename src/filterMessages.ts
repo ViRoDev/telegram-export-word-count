@@ -53,6 +53,6 @@ export const getMessagesFromFile = async (filepath: string) =>
         (await parseJSON(filepath)).messages
 
 export const filterFromUser = (messages : Array<Message>, userId : string) => 
-        filteredMessages('message', 'from_id', userId, messages)
+        filteredMessages('message', 'from_id', userId.toString(), messages)
 
 export default filteredMessages;
