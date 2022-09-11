@@ -1,6 +1,6 @@
 import fs from 'fs';
 import {config} from 'dotenv'
-import filteredMessages, { concatInnerArrays, splitIntoWords, textOnlyNonEmpty, textOnlyNonEmpyStringStrict } from "filterMessages";
+import {filterFromUser, concatInnerArrays, splitIntoWords, getMessagesFromFile, textOnlyNonEmpyStringStrict } from "filterMessages";
 import parseJSON from "./parseJSON";
 import { Message } from 'messages.types';
 import { cache } from 'functionMemoization';
@@ -17,7 +17,7 @@ const main = async () => {
 
     console.log('filtering by user')
     let ffu = filterFromUser;
-    const filtered = await cache<typeof ffu>(filterFromUser, CACHE_FOLDER_PATH)(messages)
+    const filtered = await cache<typeof ffu>(filterFromUser, CACHE_FOLDER_PATH)(messages, process.env.FROM_ID!!)
     console.log('\t...done')
 
     console.log('text only')
@@ -32,16 +32,10 @@ const main = async () => {
 
     console.log('concat inner arrays')
     let cia = concatInnerArrays
-    const totalWordsArray = await cache<typeof cia>(concatInnerArrays, CACHE_FOLDER_PATH)(messagesWordsArray)
+    const totalWordsArray = cache<typeof cia>(concatInnerArrays, CACHE_FOLDER_PATH)(messagesWordsArray)
     console.log('\t...done')
 
     fs.writeFileSync("public/words.json", JSON.stringify(totalWordsArray));
 }
-
-const getMessagesFromFile = async (filepath: string) => 
-    (await parseJSON(filepath)).messages
-
-const filterFromUser = (messages : Array<Message>) => 
-    filteredMessages('message', 'from_id', process.env.FROM_ID!!, messages)
 
 main();

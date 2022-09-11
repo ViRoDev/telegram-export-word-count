@@ -1,4 +1,5 @@
 import { CombinedProperties, Message, Messages, MessageTypes, TextInsertArray, TextInsertObject, TextType } from "messages.types";
+import parseJSON from "parseJSON";
 import emojiRegex from "emoji-regex";
 
 const filteredMessages = (type: MessageTypes, 
@@ -47,5 +48,11 @@ export const concatInnerArrays = (messages: string[][]) => messages
         .reduce((prev, cur) =>
             prev.concat([...cur]))
         .filter(Boolean);
+
+export const getMessagesFromFile = async (filepath: string) => 
+        (await parseJSON(filepath)).messages
+
+export const filterFromUser = (messages : Array<Message>, userId : string) => 
+        filteredMessages('message', 'from_id', userId, messages)
 
 export default filteredMessages;
