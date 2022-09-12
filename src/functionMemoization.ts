@@ -8,7 +8,7 @@ export const sha256Hex = (...args : any) : hex =>
 
 export const cache = <T>(func : Function, cacheFolderPath : string = '.cache') => {
     type cacheObjectType = { [hash: string] : any}   
-    const memFunc = (...args : any) => {
+    const memFunc = async (...args : any) => {
         const cacheHex = sha256Hex(func.toString(), args.toString())
         const functionCachePath = `${cacheFolderPath}/${cacheHex}`;
         let mem : cacheObjectType = {};
@@ -25,7 +25,7 @@ export const cache = <T>(func : Function, cacheFolderPath : string = '.cache') =
         if(!mem[cacheHex]) {
             //TODO: make encryption/decryption of function call result
             const funcResults = func(...args);
-            mem[cacheHex] = funcResults;
+            mem[cacheHex] = await funcResults;
 
             try { fs.writeFileSync(functionCachePath, JSON.stringify(mem)) }
             catch (err) { 
