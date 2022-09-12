@@ -11,8 +11,10 @@ Project steps:
     - [ ] handle links -- remove them from messages
 [x] Divide each text message into arrays of words
 [x] Combine those arrays into one array of words
-[ ] Process words
-  - [ ] Count each word appearence
-  - [ ] Sort words by appearence
+[~] Process words
+  - [x] Count each word appearence
+  - [x] Sort words by appearence
+  - [ ] Sort out numbers 
+  - [ ] Sort out non-nouns and non-verbs
   - [ ] Get top results
 [x] Calculation cache for higher performance
