@@ -1,8 +1,8 @@
-import { CombinedProperties, Message, Messages, MessageTypes, TextInsertArray, TextInsertObject, TextType } from "messages.types";
+ import { CombinedProperties, Message, Messages, MessageTypes, TextInsertArray, TextInsertObject, TextType } from "messages.types";
 import parseJSON from "parseJSON";
 import emojiRegex from "emoji-regex";
 
-const filteredMessages = (type: MessageTypes, 
+const filterMessagesByTypeAndProperty = (type: MessageTypes, 
                           property: CombinedProperties, 
                           value: string,
                           messages: Messages
@@ -11,17 +11,22 @@ const filteredMessages = (type: MessageTypes,
         m.type === type && m[property] === value
     )
 
-export const propertyOnly = (property: CombinedProperties, messages: Messages) => 
+export const filterByProperty = (property: CombinedProperties, messages: Messages) => 
         messages.map(m => m[property]);
 
-export const textOnly = (messages: Messages) => 
-    propertyOnly("text", messages) as Array<TextType>;
+export const getText = (messages: Messages, 
+                        removeEmpty = true,
+                        removeLinks = true,
+                        removeMentions = true,
+                        normalizeFontModifiers = true) => {
+    let text = filterByProperty("text", messages) as Array<TextType>;
+    const empty = removeEmpty ? text.filter(Boolean) : text;
 
-export const textOnlyNonEmpty = (messages: Messages) => 
-        textOnly(messages).filter(Boolean);
+    return empty;
+}
 
 export const textOnlyNonEmpyStringStrict = (messages: Messages) => 
-        textOnlyNonEmpty(messages).map(msg => {
+        getText(messages).map(msg => {
             if(typeof msg === 'string') return msg;
             return transformTextSpecialCaseIntoString(msg);
         })
@@ -53,6 +58,6 @@ export const getMessagesFromFile = async (filepath: string) =>
         (await parseJSON(filepath)).messages
 
 export const filterFromUser = (messages : Array<Message>, userId : string) => 
-        filteredMessages('message', 'from_id', userId, messages)
+        filterMessagesByTypeAndProperty('message', 'from_id', userId, messages)
 
-export default filteredMessages;
+export default filterMessagesByTypeAndProperty;
