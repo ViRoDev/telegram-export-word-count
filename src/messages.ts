@@ -1,20 +1,20 @@
- import { CombinedProperties, Message, Messages, MessageTypes, TextInsertArray, TextInsertObject, TextType } from "messages.types";
+ import { CombinedProperties, Message, MessageTypes, TextInsertArray, TextInsertObject, TextType } from "messages.types";
 import parseJSON from "parseJSON";
 import emojiRegex from "emoji-regex";
 
 const filterMessagesByTypeAndProperty = (type: MessageTypes, 
                           property: CombinedProperties, 
                           value: string,
-                          messages: Messages
+                          messages: Message[]
                          ) => 
     messages.filter(m => 
         m.type === type && m[property] === value
     )
 
-export const filterByProperty = (property: CombinedProperties, messages: Messages) => 
+export const filterByProperty = (property: CombinedProperties, messages: Message[]) => 
         messages.map(m => m[property]);
 
-export const getText = (messages: Messages, 
+export const getText = (messages: Message[], 
                         removeEmpty = true,
                         removeLinks = true,
                         removeMentions = true,
@@ -25,7 +25,7 @@ export const getText = (messages: Messages,
     return empty;
 }
 
-export const textOnlyNonEmpyStringStrict = (messages: Messages) => 
+export const textOnlyNonEmpyStringStrict = (messages: Message[]) => 
         getText(messages).map(msg => {
             if(typeof msg === 'string') return msg;
             return transformTextSpecialCaseIntoString(msg);

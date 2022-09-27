@@ -7,7 +7,7 @@ export type TextSpecialArrayType = string | TextInsertObject;
 export type TextInsertArray = [...Array<TextSpecialArrayType>]
 export type TextType = string | TextInsertArray;
 
-export type Messages = Array<Message>;
+
 export type MessageProperties = "id" | "type" | "date" | "date_unixtime" | "text";
 export type Message = {
     id: number,
