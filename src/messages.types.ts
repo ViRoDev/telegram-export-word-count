@@ -19,7 +19,7 @@ export type Message = {
     actor_id?: number,
     action?: ActionTypes,
     from?: string,
-    from_id?: number,
+    from_id?: string,
     reply_to_message_id?: number,
 }
 
