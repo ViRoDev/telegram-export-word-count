@@ -2,3 +2,4 @@ node_modules
 public/*
 !public/readme.txt
 yarn-error.log
+dist/*
